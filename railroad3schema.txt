@@ -1,0 +1,116 @@
+MariaDB [railroad1]> use railroad3;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [railroad3]> show tables;
++---------------------+
+| Tables_in_railroad3 |
++---------------------+
+| Passengers          |
+| Seats_Free          |
+| Segments            |
+| Stations            |
+| Tickets             |
+| Trains              |
+| stops_at            |
++---------------------+
+7 rows in set (0.00 sec)
+
+MariaDB [railroad3]> describe passengers;
+ERROR 1146 (42S02): Table 'railroad3.passengers' doesn't exist
+MariaDB [railroad3]> describe Passengers;
++---------------------------+-------------+------+-----+---------+----------------+
+| Field                     | Type        | Null | Key | Default | Extra          |
++---------------------------+-------------+------+-----+---------+----------------+
+| passenger_id              | int(11)     | NO   | PRI | NULL    | auto_increment |
+| passenger_lname           | varchar(20) | NO   |     | NULL    |                |
+| passenger_fname           | varchar(20) | NO   |     | NULL    |                |
+| passenger_billing_address | varchar(50) | NO   |     | NULL    |                |
+| passenger_email           | varchar(50) | YES  |     | NULL    |                |
+|passenger_mop		varchar(20)   /* pb add for draft stored procs*/
++---------------------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+MariaDB [railroad3]> describe Seats_Free;
++---------------+---------+------+-----+------------+-------+
+| Field         | Type    | Null | Key | Default    | Extra |
++---------------+---------+------+-----+------------+-------+
+| sf_train_id   | int(11) | NO   | PRI | 0          |       |
+| sf_seg_id     | int(11) | NO   | PRI | 0          |       |
+| sf_date       | date    | NO   | PRI | 0000-00-00 |       |
+| sf_seats_free | int(11) | YES  |     | NULL       |       |
++---------------+---------+------+-----+------------+-------+
+4 rows in set (0.00 sec)
+
+MariaDB [railroad3]> Describe Segments;
++---------------+---------+------+-----+---------+-------+
+| Field         | Type    | Null | Key | Default | Extra |
++---------------+---------+------+-----+---------+-------+
+| segment_id    | int(11) | NO   | PRI | 0       |       |
+| segment_north | int(11) | NO   | MUL | NULL    |       |
+| segment_south | int(11) | NO   | MUL | NULL    |       |
+ segment_fare	   decimal(4,2)   /* pb add for draft sps*/
++---------------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+MariaDB [railroad3]> describe Stations;
++--------------+---------+------+-----+---------+-------+
+| Field        | Type    | Null | Key | Default | Extra |
++--------------+---------+------+-----+---------+-------+
+| station_id   | int(11) | NO   | PRI | NULL    |       |
+| station_name | text    | NO   |     | NULL    |       |
+| station_code | text    | NO   |     | NULL    |       |
++--------------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+MariaDB [railroad3]> describe Tickets;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| trip_id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| trip_starts  | int(11)      | NO   | MUL | NULL    |                |
+| trip_ends    | int(11)      | NO   | MUL | NULL    |                |
+| trip_train   | int(11)      | NO   | MUL | NULL    |                |
+| trip_date    | date         | YES  |     | NULL    |                |
+| passenger_id | int(11)      | NO   | MUL | NULL    |                |
+| round_trip   | tinyint(1)   | YES  |     | NULL    |                |
+| return_train | int(11)      | YES  | MUL | NULL    |                |
+| return_date  | date         | YES  |     | NULL    |                |
+| fare         | decimal(4,2) | NO   |     | NULL    |                |
+| cancelled    | tinyint(1)   | YES  |     | 0       |                |
++--------------+--------------+------+-----+---------+----------------+
+11 rows in set (0.00 sec)
+
+MariaDB [railroad3]> describe Trains;
++--------------+------------+------+-----+---------+----------------+
+| Field        | Type       | Null | Key | Default | Extra          |
++--------------+------------+------+-----+---------+----------------+
+| train_id     | int(11)    | NO   | PRI | NULL    | auto_increment |
+| train_starts | int(11)    | YES  | MUL | NULL    |                |
+| train_ends   | int(11)    | YES  | MUL | NULL    |                |
+| direction    | tinyint(1) | YES  |     | NULL    |                |
+| train_days   | varchar(5) | YES  |     | NULL    |                |
++--------------+------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+MariaDB [railroad3]> describe stops_at;
++------------+---------+------+-----+---------+-------+
+| Field      | Type    | Null | Key | Default | Extra |
++------------+---------+------+-----+---------+-------+
+| station_id | int(11) | NO   | PRI | 0       |       |
+| train_id   | int(11) | NO   | PRI | 0       |       |
+| time_in    | time    | YES  |     | NULL    |       |
+| time_out   | time    | YES  |     | NULL    |       |
++------------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+MariaDB [railroad3]> describe Segments;
++---------------+---------+------+-----+---------+-------+
+| Field         | Type    | Null | Key | Default | Extra |
++---------------+---------+------+-----+---------+-------+
+| segment_id    | int(11) | NO   | PRI | 0       |       |
+| segment_north | int(11) | NO   | MUL | NULL    |       |
+| segment_south | int(11) | NO   | MUL | NULL    |       |
++---------------+---------+------+-----+---------+-------+
+3 rows in set (0.01 sec)

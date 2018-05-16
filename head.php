@@ -38,9 +38,9 @@ html {
 <BODY>
 <?php
 session_start();
-include("head.php"); ?>
+include("home.php"); ?>
 <div id="main"><div id="logo">
-<A HREF="head.php">
+<A HREF="home.php">
 <IMG SRC="img/logo.png" alt="Home" id="logo" width="150" height="150"></IMG>
 </A></div>
 <h1 align="center">Welcome to Team8 Railways!</h1><br/><br/><br/>

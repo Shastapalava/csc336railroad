@@ -25,7 +25,7 @@
         <div class="wrapper">
           <div class="Menu">
             <ul id="navmenu">
-            <li><A HREF="home.php">Home</A></li>
+            <li><A HREF="head.php">Home</A></li>
             <li><a href="booktkt.php">Book a ticket</a></li>
             <li><?php
                                 if(isset($_SESSION['user_info'])){

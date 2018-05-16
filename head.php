@@ -46,12 +46,6 @@ include("home.php"); ?>
 <h1 align="center">Welcome to Team8 Railways!</h1><br/><br/><br/>
 <h2 align="center">Have a safe journey with us</h2>
 <br/><br/><br/>
-<?php
-if(isset($_SESSION['user_info']))
-  echo '<h3 align="center"><a href="booktkt.php">Book here</a></h3>';
-else
-  echo '<h3 align="center"><a href="register.php">Please register/login before booking</a></h3>';
-?>
 </div>
 </BODY>
 </HTML>

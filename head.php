@@ -45,6 +45,5 @@ include("home.php"); ?>
 </A></div>
 <h1 align="center">Welcome to Team8 Railways!</h1><br/><br/><br/>
 <h2 align="center">Have a safe journey with us</h2>
-</div>
 </BODY>
 </HTML>
